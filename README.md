@@ -16,22 +16,22 @@ To be able to run this little bot, you’ll need to have:
 * [Chromedriver](http://chromedriver.chromium.org)
 * Google Chrome (English version)
 ### 2. Configuration
-After simply downloading this repository, open *start.py* , you’l have to change some line.
+After simply downloading this repository, open **start.py** , you’ll have to change some line.
 ```
 chromedriver_path = '/Users/josephpereniguez/Projects/InstaBot/chromedriver'
 ```
-If you have correct downloaded Chromedriver, change the path to yours.
+If you have correctly downloaded Chromedriver, change the path to your chromedriver file.
 ```
 username.send_keys('your_username')
 ...
 password.send_keys('your_password')
 ```
-These two lines are designed to authenticate you on Instagram. Basically  change *your_username* and *your_password* to your Instagram credentials.
+These two lines are designed to authenticate you on Instagram. Basically  change **your_username** and **your_password** to your Instagram credentials.
 ```
 hashtag_list = ['trip', 'dronephotography', 'traveler']
 ```
 This is the hashtags your bot will reach to find random posts and persons to comment / like / follow.
-Change this line with your custom tags, here I’m using *trip*, *dronephotography* and *traveler* tags.
+Change this line with your custom tags, here I’m using **trip**, **dronephotography** and **traveler** tags.
 ### 3. Run
 Once the configuration is complete, it's time to run this bot.
 Simply run the command line below in a terminal:
