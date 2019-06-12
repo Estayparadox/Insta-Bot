@@ -19,7 +19,7 @@ To be able to run this little bot, you’ll need to have:
 * [Chromedriver](http://chromedriver.chromium.org)
 * Google Chrome (English version)
 ### 2. Configuration
-After simply downloading this repository, open **start.py** , you’ll have to change some line.
+After simply downloading this repository, open **start.py** , you’ll have to change some lines.
 ```
 chromedriver_path = '/Users/josephpereniguez/Projects/InstaBot/chromedriver'
 ```
