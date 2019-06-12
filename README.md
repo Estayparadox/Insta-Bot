@@ -8,6 +8,9 @@ It's not a bot that will directly bring you thousands of followers but maybe doz
 The principle is simple, the bot will search, thanks to a list of defined tags, for random posts on Instagram. For each post, the bot will like, comment and follow the author.
 As with Twitter, many users often follow the people who follow them.
 This bot therefore works on the « follow back » principle.
+![image1](https://github.com/Estayparadox/InstaBot/blob/master/ressources/IMG_1869.png)
+![image2](https://github.com/Estayparadox/InstaBot/blob/master/ressources/IMG_1872.png)
+![image3](https://github.com/Estayparadox/InstaBot/blob/master/ressources/IMG_1897.jpeg)
 ## How to use InstaBot
 ### 1. Prerequisites
 To be able to run this little bot, you’ll need to have:
