@@ -14,7 +14,10 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 
-
+#for firefoxdriver
+# i = __file__.rfind('/')
+# webdriver = webdriver.Firefox(executable_path=__file__[:i + 1] + 'geckodriver.exe')
+#for chromedriver
 chromedriver_path ='/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
 webdriver = webdriver.Chrome(executable_path=chromedriver_path)
 sleep(1)
