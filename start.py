@@ -14,24 +14,29 @@ from time import sleep, strftime
 from random import randint
 import pandas as pd
 
-chromedriver_path = '/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
+#for firefoxdriver
+# i = __file__.rfind('/')
+# webdriver = webdriver.Firefox(executable_path=__file__[:i + 1] + 'geckodriver.exe')
+#for chromedriver
+chromedriver_path ='/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
 webdriver = webdriver.Chrome(executable_path=chromedriver_path)
-sleep(2)
+sleep(1)
 webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-sleep(3)
+sleep(2)
 
 username = webdriver.find_element_by_name('username')
 username.send_keys('your_username') # Change this to your own Instagram username
 password = webdriver.find_element_by_name('password')
 password.send_keys('your_password') # Change this to your own Instagram password
 
-button_login = webdriver.find_element_by_css_selector('#react-root > section > main > div > article > div > div:nth-child(1) > div > form > div:nth-child(4) > button')
+button_login = webdriver.find_element_by_xpath('//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
 button_login.click()
 sleep(3)
-
-notnow = webdriver.find_element_by_css_selector('body > div.RnEpo.Yx5HN > div > div > div.mt3GC > button.aOOlW.HoLwm')
-notnow.click() # Comment these last 2 lines out, if you don't get a pop up asking about notifications
-
+try:
+    notnow = webdriver.find_element_by_xpath('//html//body//div[1]//section//main//div//div//div//div//button')
+    notnow.click() # Comment these last 2 lines out, if you don't get a pop up asking about notifications
+except :
+    pass
 hashtag_list = ['trip', 'dronephotography', 'traveler'] # Change this to your own tags
 
 prev_user_list = [] # If it's the first time you run it, use this line and comment the two below
