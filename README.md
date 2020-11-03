@@ -17,7 +17,8 @@ To be able to run this little bot, you’ll need to have:
 * [Python](https://www.python.org/downloads/)
 * [Selenium](https://selenium-python.readthedocs.io/installation.html)
 * [Chromedriver](http://chromedriver.chromium.org)
-* Google Chrome (English version)
+* [Geckodriver](https://github.com/mozilla/geckodriver)
+* Google Chrome (English version) or Mozilla Firefox
 ### 2. Configuration
 After simply downloading this repository, open **start.py** , you’ll have to change some lines.
 ```
