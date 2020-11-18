@@ -1,4 +1,4 @@
-# InstaBot
+# Insta-Bot
 ![badge1](https://img.shields.io/badge/license-MIT-brightgreen.svg)
 ![badge1](https://img.shields.io/badge/language-Python-01B0F0.svg)
 > An Instagram Bot developed in Python with Selenium which uses the follow back principle to bring you followers gradually.
