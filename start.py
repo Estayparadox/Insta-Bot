@@ -38,7 +38,7 @@ username.send_keys('your_username') # Change this to your own Instagram username
 password = webdriver.find_element_by_name('password')
 password.send_keys('your_password') # Change this to your own Instagram password
 
-button_login = webdriver.find_element(By.Xpath, '//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
+button_login = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
 button_login.click()
 sleep(3)
 try:
