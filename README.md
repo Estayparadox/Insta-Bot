@@ -1,5 +1,6 @@
 ![GitHub](https://img.shields.io/github/license/estayparadox/insta-bot)
 ![GitHub top language](https://img.shields.io/github/languages/top/estayparadox/insta-bot)
+[![Maintainability](https://api.codeclimate.com/v1/badges/27ce99459261036cd733/maintainability)](https://codeclimate.com/github/Estayparadox/InstaBot/maintainability)
 ![GitHub issues](https://img.shields.io/github/issues/estayparadox/insta-bot)
 ![GitHub contributors](https://img.shields.io/github/contributors/estayparadox/insta-bot)
 ![GitHub last commit (branch)](https://img.shields.io/github/last-commit/estayparadox/insta-bot/master)
