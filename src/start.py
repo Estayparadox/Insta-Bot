@@ -7,36 +7,36 @@
 # │ Licensed under the MIT                                                 |
 # | (https://github.com/Estayparadox/InstaBot/blob/master/LICENSE) license.│
 # └────────────────────────────────────────────────────────────────────────┘
-import chromedriver_autoinstaller
+
+import pandas as pd
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from time import sleep, strftime
 from random import randint
-import pandas as pd
-from selenium.webdriver.common.by import By
-
 
 #for firefoxdriver
 # i = __file__.rfind('/')
 # webdriver = webdriver.Firefox(executable_path=__file__[:i + 1] + 'geckodriver.exe')
-#for chromedriver
-# chromedriver_path ='/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
-# webdriver = webdriver.Chrome(executable_path=chromedriver_path)
 
-# define chrome driver path
-opt = webdriver.ChromeOptions()
-opt.add_argument("--start-maximized")
-chromedriver_autoinstaller.install()
-webdriver = webdriver.Chrome(options=opt)
+#for chromedriver
+chromedriver_path ='/Users/joseph/Projects/Insta-Bot/src/chromedriver' # Change this to your own chromedriver path!
+service = Service(executable_path=chromedriver_path)
+options = webdriver.ChromeOptions()
+webdriver = webdriver.Chrome(service=service, options=options)
 
 sleep(1)
 webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
 sleep(2)
 
+username="your_username" # Change this to your own Instagram username
+password="your_password" # Change this to your own Instagram password
+
 username = webdriver.find_element('username')
-username.send_keys('your_username') # Change this to your own Instagram username
+username.send_keys(username) 
 password = webdriver.find_element('password')
-password.send_keys('your_password') # Change this to your own Instagram password
+password.send_keys(password) 
 
 button_login = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
 button_login.click()
