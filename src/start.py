@@ -7,47 +7,66 @@
 # │ Licensed under the MIT                                                 |
 # | (https://github.com/Estayparadox/InstaBot/blob/master/LICENSE) license.│
 # └────────────────────────────────────────────────────────────────────────┘
-import chromedriver_autoinstaller
+
+import pandas as pd
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from time import sleep, strftime
 from random import randint
-import pandas as pd
-from selenium.webdriver.common.by import By
-
 
 #for firefoxdriver
 # i = __file__.rfind('/')
 # webdriver = webdriver.Firefox(executable_path=__file__[:i + 1] + 'geckodriver.exe')
+
 #for chromedriver
-# chromedriver_path ='/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
-# webdriver = webdriver.Chrome(executable_path=chromedriver_path)
+chromedriver_path ='/Users/joseph/Projects/Insta-Bot/src/chromedriver' # Change this to your own chromedriver path!
+service = Service(executable_path=chromedriver_path)
+options = webdriver.ChromeOptions()
+webdriver = webdriver.Chrome(service=service, options=options)
 
-# define chrome driver path
-opt = webdriver.ChromeOptions()
-opt.add_argument("--start-maximized")
-chromedriver_autoinstaller.install()
-webdriver = webdriver.Chrome(options=opt)
+sleep(5)
+webdriver.get('https://www.instagram.com/accounts/login/')
+sleep(5)
 
-sleep(1)
-webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-sleep(2)
-
-username = webdriver.find_element('username')
-username.send_keys('your_username') # Change this to your own Instagram username
-password = webdriver.find_element('password')
-password.send_keys('your_password') # Change this to your own Instagram password
-
-button_login = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
+# Skip the cookie banner
+button_login = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/button[1]')
 button_login.click()
 sleep(3)
+
+# Setup credentials
+account_name="your_username" # Change this to your own Instagram username
+account_password="your_password" # Change this to your own Instagram password
+
+# Email & Password inputs
+username = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[1]/div/label/input')
+username.send_keys(account_name)
+password = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[2]/div/label/input')
+password.send_keys(account_password)
+
+# Login
+button_login = webdriver.find_element(By.XPATH, '//html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[3]/button')
+button_login.click()
+sleep(3)
+
+# Optional save info popup
+sleep(3)
 try:
-    notnow = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//div//div//div//button')
-    notnow.click() # Comment these last 2 lines out, if you don't get a pop up asking about notifications
+    save_info = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/div/div')
+    save_info.click()
 except :
     pass
-hashtag_list = ['trip', 'dronephotography', 'traveler'] # Change this to your own tags
 
+# Optional notifications popup
+sleep(3)
+try:
+    notnow = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]')
+    notnow.click() 
+except :
+    pass
+
+hashtag_list = ['trip', 'dronephotography', 'traveler'] # Change this to your own tags
 prev_user_list = [] # If it's the first time you run it, use this line and comment the two below
 # prev_user_list = pd.read_csv('20190604-224633_users_followed_list.csv', delimiter=',').iloc[:,1:2] # useful to build a user log
 # prev_user_list = list(prev_user_list['0'])
@@ -62,7 +81,7 @@ for hashtag in hashtag_list:
     tag += 1
     webdriver.get('https://www.instagram.com/explore/tags/'+ hashtag_list[tag] + '/')
     sleep(5)
-    first_thumbnail = webdriver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div')
+    first_thumbnail = webdriver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/article/div/div/div/div[1]/div[1]/a/div')
 
     first_thumbnail.click()
     sleep(randint(1,2))

@@ -15,29 +15,48 @@ The principle is simple, the bot will search, thanks to a list of defined tags, 
 As with Twitter, many users often follow the people who follow them.
 This bot therefore works on the « follow back » principle.
 
-![image1](https://github.com/Estayparadox/InstaBot/blob/master/resource/IMG_1869.png)
-![image2](https://github.com/Estayparadox/InstaBot/blob/master/resource/IMG_1872.png)
-![image3](https://github.com/Estayparadox/InstaBot/blob/master/resource/IMG_1897.jpeg)
+![image1](https://github.com/Estayparadox/InstaBot/blob/master/src/images/IMG_1869.png)
+![image2](https://github.com/Estayparadox/InstaBot/blob/master/src/images/IMG_1872.png)
+![image3](https://github.com/Estayparadox/InstaBot/blob/master/src/images/IMG_1897.jpeg)
 
 ## How to use InstaBot
 
 ### 1. Prerequisites
 To be able to run this little bot, you’ll need to have:
-* [Python](https://www.python.org/downloads/)
-* [Selenium](https://selenium-python.readthedocs.io/installation.html)
-* [Chromedriver](http://chromedriver.chromium.org)
-* [Geckodriver](https://github.com/mozilla/geckodriver)
-* Google Chrome (English version) or Mozilla Firefox
+* Python
+* Selenium
+* Chromedriver or Geckodriver
+* Google Chrome (English version) or Mozilla Firefox 
+
+**Install Python**
+
+If you don't have python installed, follow [this link](https://www.python.org/downloads/) and download the latest version of python.
+Then you can check if your version of python using the command lines bellow
+```shell
+python3 --version
+pip3 --version
+```
+
+**Install Selenium**
+
+Then you need to install [selenium](https://selenium-python.readthedocs.io/installation.html) using pip
+```shell
+pip3 install selenium
+```
+
+**Install you driver**
+
+Depending of the browser you use, install [Chromedriver](http://chromedriver.chromium.org) or [Geckodriver](https://github.com/mozilla/geckodriver) and put the binary file in the `src/` folder.
 
 ### 2. Configuration
-These two lines are designed to authenticate you on Instagram. Basically  change **your_username** and **your_password** to your Instagram credentials.
+These two lines are designed to authenticate you on Instagram. Basically  change **your_username** and **your_password** to your Instagram credentials in the `src/start.py` file.
 ```python
-username.send_keys('your_username')
-...
-password.send_keys('your_password')
+account_name="your_username"
+account_password="your_password"
 ```
 This is the hashtags your bot will reach to find random posts and persons to comment / like / follow.
 Change this line with your custom tags, here I’m using **trip**, **dronephotography** and **traveler** tags.
+
 ```python
 hashtag_list = ['trip', 'dronephotography', 'traveler']
 ```
@@ -47,12 +66,12 @@ hashtag_list = ['trip', 'dronephotography', 'traveler']
 You can install all the libraries and modules used in this project using the below command.  
 
 ```shell
-pip install -r requirements.txt  
+pip3 install -r src/requirements.txt  
 ```
 
 ### 3. Run
 Once the configuration is complete, it's time to run this bot.
 Simply run the command line below in a terminal:
 ```shell
-$> python start.py
+python3 src/start.py
 ```
