@@ -1,6 +1,5 @@
 # Insta-Bot
-![badge1](https://img.shields.io/badge/license-MIT-brightgreen.svg)
-![badge1](https://img.shields.io/badge/language-Python-01B0F0.svg)
+
 > An Instagram Bot developed in Python with Selenium which uses the follow back principle to bring you followers gradually.
 ## Increase your Instagram followers gradually
 This bot is made to build an audience.
@@ -20,34 +19,28 @@ To be able to run this little bot, you’ll need to have:
 * [Geckodriver](https://github.com/mozilla/geckodriver)
 * Google Chrome (English version) or Mozilla Firefox
 ### 2. Configuration
-After simply downloading this repository, open **start.py** , you’ll have to change some lines.
-```
-chromedriver_path = '/Users/josephpereniguez/Projects/InstaBot/chromedriver'
-```
-If you have correctly downloaded Chromedriver, change the path to your chromedriver file.
-```
+These two lines are designed to authenticate you on Instagram. Basically  change **your_username** and **your_password** to your Instagram credentials.
+```python
 username.send_keys('your_username')
 ...
 password.send_keys('your_password')
 ```
-These two lines are designed to authenticate you on Instagram. Basically  change **your_username** and **your_password** to your Instagram credentials.
-```
-hashtag_list = ['trip', 'dronephotography', 'traveler']
-```
 This is the hashtags your bot will reach to find random posts and persons to comment / like / follow.
 Change this line with your custom tags, here I’m using **trip**, **dronephotography** and **traveler** tags.
-
+```python
+hashtag_list = ['trip', 'dronephotography', 'traveler']
+```
 ### 4. Install all libraries
 
 You can install all the libraries and modules used in this project using the below command.  
 
-```commandline
+```shell
 pip install -r requirements.txt  
 ```
 
 ### 3. Run
 Once the configuration is complete, it's time to run this bot.
 Simply run the command line below in a terminal:
-```
+```shell
 $> python start.py
 ```
