@@ -7,19 +7,28 @@
 # │ Licensed under the MIT                                                 |
 # | (https://github.com/Estayparadox/InstaBot/blob/master/LICENSE) license.│
 # └────────────────────────────────────────────────────────────────────────┘
-
+import chromedriver_autoinstaller
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from time import sleep, strftime
 from random import randint
 import pandas as pd
+from selenium.webdriver.common.by import By
+
 
 #for firefoxdriver
 # i = __file__.rfind('/')
 # webdriver = webdriver.Firefox(executable_path=__file__[:i + 1] + 'geckodriver.exe')
 #for chromedriver
-chromedriver_path ='/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
-webdriver = webdriver.Chrome(executable_path=chromedriver_path)
+# chromedriver_path ='/Users/josephpereniguez/Projects/InstaBot/chromedriver' # Change this to your own chromedriver path!
+# webdriver = webdriver.Chrome(executable_path=chromedriver_path)
+
+# define chrome driver path
+opt = webdriver.ChromeOptions()
+opt.add_argument("--start-maximized")
+chromedriver_autoinstaller.install()
+webdriver = webdriver.Chrome(options=opt)
+
 sleep(1)
 webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
 sleep(2)
@@ -29,11 +38,11 @@ username.send_keys('your_username') # Change this to your own Instagram username
 password = webdriver.find_element('password')
 password.send_keys('your_password') # Change this to your own Instagram password
 
-button_login = webdriver.find_element_by_xpath('//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
+button_login = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
 button_login.click()
 sleep(3)
 try:
-    notnow = webdriver.find_element_by_xpath('//html//body//div[1]//section//main//div//div//div//div//button')
+    notnow = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//div//div//div//button')
     notnow.click() # Comment these last 2 lines out, if you don't get a pop up asking about notifications
 except :
     pass
@@ -53,25 +62,25 @@ for hashtag in hashtag_list:
     tag += 1
     webdriver.get('https://www.instagram.com/explore/tags/'+ hashtag_list[tag] + '/')
     sleep(5)
-    first_thumbnail = webdriver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div')
+    first_thumbnail = webdriver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div')
 
     first_thumbnail.click()
     sleep(randint(1,2))
     try:
         for x in range(1,200):
 
-            username = webdriver.find_element_by_xpath('/html/body/div[3]/div[2]/div/article/header/div[2]/div[1]/div[1]/h2/a').text
+            username = webdriver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/article/header/div[2]/div[1]/div[1]/h2/a').text
             if username not in prev_user_list:
 
                 # If we already follow, do not unfollow
-                if webdriver.find_element_by_xpath('/html/body/div[3]/div[2]/div/article/header/div[2]/div[1]/div[2]/button').text == 'Follow' :
+                if webdriver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/article/header/div[2]/div[1]/div[2]/button').text == 'Follow' :
 
-                    webdriver.find_element_by_xpath('/html/body/div[3]/div[2]/div/article/header/div[2]/div[1]/div[2]/button').click()
+                    webdriver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/article/header/div[2]/div[1]/div[2]/button').click()
                     new_followed.append(username)
                     followed += 1
 
                     # Liking the picture
-                    button_like = webdriver.find_element_by_xpath('/html/body/div[3]/div[2]/div/article/div[2]/section[1]/span[1]/button')
+                    button_like = webdriver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/article/div[2]/section[1]/span[1]/button')
                     button_like.click()
                     likes += 1
                     sleep(randint(18,25))
@@ -81,10 +90,10 @@ for hashtag in hashtag_list:
                     print('{}_{}: {}'.format(hashtag, x,comm_prob))
                     if comm_prob > 7:
                         comments += 1
-                        webdriver.find_element_by_xpath('/html/body/div[3]/div[2]/div/article/div[2]/section[1]/span[2]/button/span').click()
-                        comment_box = webdriver.find_element_by_xpath('/html/body/div[3]/div[2]/div/article/div[2]/section[3]/div/form/textarea')
+                        webdriver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/article/div[2]/section[1]/span[2]/button/span').click()
+                        comment_box = webdriver.find_element(By.XPATH, '/html/body/div[3]/div[2]/div/article/div[2]/section[3]/div/form/textarea')
 
-                        if (comm_prob < 7):
+                        if comm_prob < 7:
                             comment_box.send_keys('Really cool!')
                             sleep(1)
                         elif (comm_prob > 6) and (comm_prob < 9):
@@ -98,14 +107,14 @@ for hashtag in hashtag_list:
                             sleep(1)
                         # Enter to post comment
                         comment_box.send_keys(Keys.ENTER)
-                        sleep(randint(22,28))
+                        sleep(randint(22, 28))
 
                 # Next picture
-                webdriver.find_element_by_link_text('Next').click()
-                sleep(randint(25,29))
+                webdriver.find_element(By.LINK_TEXT, 'Next').click()
+                sleep(randint(25, 29))
             else:
-                webdriver.find_element_by_link_text('Next').click()
-                sleep(randint(20,26))
+                webdriver.find_element(By.LINK_TEXT, 'Next').click()
+                sleep(randint(20, 26))
     # Some hashtag stops refreshing photos (it may happen sometimes), it continues to the next
     except:
         continue

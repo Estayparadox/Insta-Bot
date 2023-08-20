@@ -36,6 +36,15 @@ hashtag_list = ['trip', 'dronephotography', 'traveler']
 ```
 This is the hashtags your bot will reach to find random posts and persons to comment / like / follow.
 Change this line with your custom tags, here I’m using **trip**, **dronephotography** and **traveler** tags.
+
+### 4. Install all libraries
+
+You can install all the libraries and modules used in this project using the below command.  
+
+```commandline
+pip install -r requirements.txt  
+```
+
 ### 3. Run
 Once the configuration is complete, it's time to run this bot.
 Simply run the command line below in a terminal:
