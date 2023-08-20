@@ -36,14 +36,14 @@ button_login.click()
 sleep(3)
 
 # Setup credentials
-accountname="your_username" # Change this to your own Instagram username
-accountpassword="your_password1" # Change this to your own Instagram password
+account_name="your_username" # Change this to your own Instagram username
+account_password="your_password" # Change this to your own Instagram password
 
 # Email & Password inputs
 username = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[1]/div/label/input')
-username.send_keys(accountname) 
+username.send_keys(account_name)
 password = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[2]/div/label/input')
-password.send_keys(accountpassword) 
+password.send_keys(account_password)
 
 # Login
 button_login = webdriver.find_element(By.XPATH, '//html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[3]/button')
@@ -81,7 +81,7 @@ for hashtag in hashtag_list:
     tag += 1
     webdriver.get('https://www.instagram.com/explore/tags/'+ hashtag_list[tag] + '/')
     sleep(5)
-    first_thumbnail = webdriver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/article/div[1]/div/div/div[1]/div[1]/a/div')
+    first_thumbnail = webdriver.find_element(By.XPATH, '//*[@id="react-root"]/section/main/article/div/div/div/div[1]/div[1]/a/div')
 
     first_thumbnail.click()
     sleep(randint(1,2))
