@@ -26,28 +26,47 @@ service = Service(executable_path=chromedriver_path)
 options = webdriver.ChromeOptions()
 webdriver = webdriver.Chrome(service=service, options=options)
 
-sleep(1)
-webdriver.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
-sleep(2)
+sleep(5)
+webdriver.get('https://www.instagram.com/accounts/login/')
+sleep(5)
 
-username="your_username" # Change this to your own Instagram username
-password="your_password" # Change this to your own Instagram password
-
-username = webdriver.find_element('username')
-username.send_keys(username) 
-password = webdriver.find_element('password')
-password.send_keys(password) 
-
-button_login = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//article//div//div[1]//div//form//div//div[3]//button//div')
+# Skip the cookie banner
+button_login = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/button[1]')
 button_login.click()
 sleep(3)
+
+# Setup credentials
+accountname="your_username" # Change this to your own Instagram username
+accountpassword="your_password1" # Change this to your own Instagram password
+
+# Email & Password inputs
+username = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[1]/div/label/input')
+username.send_keys(accountname) 
+password = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[2]/div/label/input')
+password.send_keys(accountpassword) 
+
+# Login
+button_login = webdriver.find_element(By.XPATH, '//html/body/div[2]/div/div/div[2]/div/div/div/div[1]/section/main/div/div/div[1]/div[2]/form/div/div[3]/button')
+button_login.click()
+sleep(3)
+
+# Optional save info popup
+sleep(3)
 try:
-    notnow = webdriver.find_element(By.XPATH, '//html//body//div[1]//section//main//div//div//div//div//button')
-    notnow.click() # Comment these last 2 lines out, if you don't get a pop up asking about notifications
+    save_info = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/section/main/div/div/div/div/div')
+    save_info.click()
 except :
     pass
-hashtag_list = ['trip', 'dronephotography', 'traveler'] # Change this to your own tags
 
+# Optional notifications popup
+sleep(3)
+try:
+    notnow = webdriver.find_element(By.XPATH, '/html/body/div[2]/div/div/div[3]/div/div/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[3]/button[2]')
+    notnow.click() 
+except :
+    pass
+
+hashtag_list = ['trip', 'dronephotography', 'traveler'] # Change this to your own tags
 prev_user_list = [] # If it's the first time you run it, use this line and comment the two below
 # prev_user_list = pd.read_csv('20190604-224633_users_followed_list.csv', delimiter=',').iloc[:,1:2] # useful to build a user log
 # prev_user_list = list(prev_user_list['0'])

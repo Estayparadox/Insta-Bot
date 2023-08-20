@@ -51,8 +51,8 @@ Depending of the browser you use, install [Chromedriver](http://chromedriver.chr
 ### 2. Configuration
 These two lines are designed to authenticate you on Instagram. Basically  change **your_username** and **your_password** to your Instagram credentials in the `src/start.py` file.
 ```python
-username="your_username"
-password="your_password"
+accountname="your_username"
+accountpassword="your_password"
 ```
 This is the hashtags your bot will reach to find random posts and persons to comment / like / follow.
 Change this line with your custom tags, here I’m using **trip**, **dronephotography** and **traveler** tags.
